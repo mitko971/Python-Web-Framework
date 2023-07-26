@@ -1,0 +1,24 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+
+    <h2>Хотели:</h2>
+    <div id="hotel-collection">
+        {% for hotel in hotels_list %}
+            {% if hotel.created_by_user != request.user %}
+                <section class="hotel">
+
+                    <img src="{{ hotel.hotel_picture.url }}" alt=""/>
+                    <h3 class="title">Име на Хотела: {{ hotel.hotel_name }}</h3>
+                    <h3 class="title">Локация: {{ hotel.location }}</h3>
+                    <p class="description">Описание: {{ hotel.description|slice:20 }}...</p>
+                    <a class="details-btn" href="{% url 'information hotel' pk=hotel.pk %}">Информация</a>
+
+                    {% if request.user.is_authenticated %}
+                        <a class="details-btn" href="{% url 'reservation' pk=hotel.pk %}">Направи резервация</a>
+                    {% endif %}
+
+                </section>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

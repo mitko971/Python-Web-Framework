@@ -1,0 +1,26 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+
+    {% if hotels %}
+        <h2>Хотели:</h2>
+        <div id="hotel-collection">
+            {% for hotel in hotels %}
+                <section class="hotel">
+
+
+                    <img src="{{ hotel.hotel_picture.url }}" alt="Hotel"/>
+                    <h3 class="title">Име на Хотела: {{ hotel.hotel_name }}</h3>
+                    <h3 class="title">Локация: {{ hotel.location }}</h3>
+                    <p class="description">{{ hotel.description|slice:20 }}...</p>
+                    <a class="details-btn" href="{% url 'information hotel' pk=hotel.pk %}">Информация</a>
+                    <a class="details-btn" href="{% url 'edit hotel' pk=hotel.pk %}">Редактирай хотел</a>
+                    <a class="details-btn" href="{% url 'delete hotel' pk=hotel.pk %}">Изтриване на хотела</a>
+
+                </section>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h2>Нямате регистрирани хотели</h2>
+    {% endif %}
+
+{% endblock %}

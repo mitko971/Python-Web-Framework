@@ -1,0 +1,18 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+    <main>
+
+        <div class="form">
+            <h2>Регистрация</h2>
+            <form class="register-form" method="post" action="{% url 'sign on' %}">
+                {{ form }}
+                {% csrf_token %}
+                <button type="submit">Регистрирай се</button>
+                <p>Вече имате регистрация<a href="{% url 'sign in' %}">Вход</a></p>
+
+            </form>
+        </div>
+
+    </main>
+
+{% endblock %}

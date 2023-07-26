@@ -1,0 +1,65 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+
+    <section id="hotel-details">
+        <h1>Резервирай: {{ hotel.hotel_name }}</h1>
+        <div class="info-section">
+            <div class="hotel-header">
+                <img class="hotel-img"
+                     src="{{ hotel.hotel_picture.url }}"
+                     alt='hotel image'/>
+                <h1>Име: {{ hotel.hotel_name }}<span class="stars">Звезди: {{ hotel.stars }}</span></h1>
+
+                <p><span class="type">Локация: {{ hotel.location }}</span></p>
+
+                <p><span class="type">Цена на нощувка: {{ hotel.price|floatformat:2 }}лв</span></p>
+            </div>
+            <p class="text">
+            {{ hotel.description }}
+            <form class="register-form" method="post" action="{% url 'reservation' pk=hotel.pk %}">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <h1>Финална цена: <span id="final-price"></span></h1>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const daysInput = document.querySelector('#id_days');
+                        const choicesInput = document.querySelector('#id_choices');
+                        const finalPriceElement = document.querySelector('#final-price');
+                        const totalPriceInput = document.querySelector('#id_total_price');
+
+                        const hotelPrice = parseFloat('{{ hotel.price }}');
+
+                        const updateFinalPrice = () => {
+                            const days = parseInt(daysInput.value, 10);
+                            const choice = choicesInput.value;
+                            let finalPrice = 0;
+                            if (days && choice === 'All inclusive') {
+                                finalPrice = hotelPrice * days * 1.2;
+                            } else if (days) {
+                                finalPrice = hotelPrice * days;
+                            }
+
+                            finalPriceElement.textContent = finalPrice.toFixed(2);
+                            totalPriceInput.value = finalPrice.toFixed(2);
+                        };
+
+                        daysInput.addEventListener('input', updateFinalPrice);
+                        choicesInput.addEventListener('change', updateFinalPrice);
+                        updateFinalPrice();
+                    });
+                </script>
+                <button class="button" type="submit">Резервирай</button>
+            </form>
+            </p>
+
+            <div class="buttons">
+                <a href="{% url 'show all hotels' %}" class="button">Хотели</a>
+            </div>
+
+        </div>
+    </section>
+
+
+
+{% endblock %}

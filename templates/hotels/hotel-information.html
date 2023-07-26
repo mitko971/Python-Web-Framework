@@ -1,0 +1,42 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+
+    <section id="hotel-details">
+        <h1>Информация за Хотел: {{ hotel.hotel_name }}</h1>
+        <div class="info-section">
+            <div class="hotel-header">
+                <img class="hotel-img"
+                     src="{{ hotel.hotel_picture.url }}"
+                     alt='hotel image'/>
+                <h1>Име: {{ hotel.hotel_name }}<span class="stars">Звезди: {{ hotel.stars }}</span></h1>
+
+                <p><span class="type">Локация: {{ hotel.location }}</span></p>
+
+                <p><span class="type">Цена на нощувка: {{ hotel.price|floatformat:2 }}лв</span></p>
+            </div>
+            <p class="text">
+                {{ hotel.description }}
+            </p>
+            <div class="comment">
+                <h1>Коментари: </h1>
+                {% for comment in comments %}
+                    <div>{{ comment.user }} - {{ comment.description }}</div>
+                {% endfor %}
+            </div>
+            {% if request.user.is_authenticated %}
+                {% include 'common/comments.html' %}
+            {% endif %}
+
+            <div class="buttons">
+                {% if request.user.is_authenticated %}
+                        <a class="button" href="{% url 'reservation' pk=hotel.pk %}">Направи резервация</a>
+                    {% endif %}
+                <a href="{% url 'show all hotels' %}" class="button">Хотели</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}

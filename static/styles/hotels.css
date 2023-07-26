@@ -1,0 +1,66 @@
+/* Стилове за секцията с хотелите */
+#hotel-collection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 100px; /* Добавяме разстояние между секцията с хотелите и футъра */
+}
+
+.hotel {
+  width: 100%; /* Задаваме ширина на всеки хотел, така че да заема цялото пространство на реда */
+  background-color: rgba(249, 249, 249, 0.81);
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex; /* Добавяме flex контейнер за секцията с хотела */
+}
+
+.hotel img {
+  width: 200px; /* По желание задайте фиксирана ширина на картинката */
+  max-height: 200px; /* Максимална височина на картинката до 200px */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.hotel .details {
+  flex: 1; /* Удължаваме текста и бутоните до края на хотела */
+  padding-left: 20px; /* Добавяме малко разстояние между картинката и текста */
+}
+
+.hotel .title {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.hotel .location {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.details-btn {
+  padding: 20px 20px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #003580;
+  border-radius: 4px;
+  display: inline-flex; /* Променяме от inline-block на inline-flex */
+  align-items: center; /* Центрираме текста вертикално */
+  justify-content: center; /* Центрираме текста хоризонтално */
+  margin-top: 10px;
+}
+
+/* Стилове за бутоните при ховър */
+.details-btn:hover {
+  background-color: #00225a;
+}
+
+/* Оформление на хотелите на по-малки устройства */
+@media (max-width: 576px) {
+  .hotel img {
+    width: 100%; /* Адаптираме ширината на картинката за по-малки устройства */
+  }
+}
+
+/* Останалите стилове на страницата могат да бъдат добавени подобно на горните примери */
+

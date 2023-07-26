@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static '/styles/styles.css' %}"/>
+    <title>Booking your Hotel</title>
+</head>
+<body>
+<header>
+    <h1 class="logo"><a href="{% url 'home page' %}"><img
+            src="{% static 'images/g9957ca71e95abd6df3bff9ae140ad604c9ecb8ee30939745bfc23e3662fc0c1fd6fdc2dc3af86c2c37fc19d0b84fb52b_1280.png' %}"
+            alt="home-picture"></a></h1>
+    {% include 'nav-bar.html' %}
+</header>
+
+<main>
+    {% block page_content %}
+    {% endblock %}
+</main>
+</body>
+</html>
+

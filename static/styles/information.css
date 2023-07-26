@@ -1,0 +1,188 @@
+
+#hotel-details {
+    position: relative;
+    display: block;
+    width: 980px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.4s;
+}
+
+#hotel-details > h1 {
+    color: #020202;
+    font-family: "Agency FB", serif;
+    font-size: 55px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.info-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-blend-mode: multiply;
+    z-index: 2;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.info-section-profile {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-blend-mode: multiply;
+    z-index: 2;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.description a {
+    text-decoration: none;
+    color: #0a0101;
+}
+
+.description a:hover {
+    color: blue;
+}
+
+.hotel-header {
+    position: relative;
+    padding: 25px;
+    height: 40%;
+}
+
+.hotel_header > h1 {
+    color: black;
+    margin-top: 5px;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.hotel_header > h4 {
+    color: #555;
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.stars {
+    display: inline-block;
+    margin-top: 15px;
+    color: #555;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: #cae732;
+    border: 1px solid rgba(5, 20, 35, 0.83);
+}
+
+.type {
+    display: inline-block;
+    color: #0a0101;
+    font-size: 19px;
+    margin-left: 10px;
+}
+
+.hotel-img {
+    position: relative;
+    float: left;
+    margin-left: 15px;
+    margin-right: 22px;
+    height: 220px;
+    /*border-radius: 50%;*/
+    box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.5);
+}
+
+.info-section > .text {
+    margin-top: 30px;
+    padding: 60px;
+    height: 50%;
+}
+
+.hotel-summary {
+    margin-top: 15px;
+    padding: 60px;
+    height: 50%;
+}
+
+.text {
+    font-size: 25px;
+    color: #545454;
+}
+
+.movie_social {
+    height: 10%;
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+
+.movie_social {
+    font-size: 1.6rem;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.buttons {
+    height: 10%;
+    text-align: right;
+    padding-right: 15px;
+    padding-bottom: 40px;
+}
+
+.button {
+    height: 15%;
+    background-color: #003580;
+    padding: 14px;
+    margin-top: auto;
+    font-size: 21px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #00225a;
+    color: white;
+}
+
+/*коментари*/
+/* Стилизиране на основния контейнер на коментарите */
+.comment {
+  background-color: #f5f5f5; /* Цвят на фона на контейнера */
+  padding: 10px; /* Отстояние около коментарите */
+  border: 1px solid #ccc; /* Рамка около контейнера */
+  max-width: 600px; /* Максимална ширина на контейнера */
+  margin: 0 auto; /* За да центрираме контейнера хоризонтално */
+  display: flex; /* Използваме Flexbox за подредба на елементите */
+  flex-direction: column; /* Определяме колонна подредба на елементите */
+  align-items: center; /* Центриране на елементите по хоризонтала */
+}
+
+/* Стилизиране на заглавието "Коментари" */
+.comment h1 {
+  font-size: 18px; /* Големина на шрифта на заглавието */
+  margin-bottom: 10px; /* Отстояние между заглавието и коментарите */
+}
+
+/* Стилизиране на отделните коментари */
+.comment div {
+  margin-bottom: 10px; /* Отстояние между отделните коментари */
+  padding: 5px; /* Отстояние вътре в коментара */
+  border: 1px solid #ddd; /* Рамка около коментара */
+  background-color: #fff; /* Цвят на фона на коментара */
+  display: flex; /* Използваме Flexbox за подредба на елементите в коментара */
+  flex-direction: column; /* Определяме колонна подредба на елементите */
+}
+
+/* Стилизиране на потребителското име в коментара */
+.comment div span.user {
+  font-weight: bold; /* Удебеляване на името на потребителя */
+  color: #336699; /* Цвят на името на потребителя */
+}
+
+/* Стилизиране на описанието в коментара */
+.comment div span.description {
+  color: #333; /* Цвят на описанието */
+}
+

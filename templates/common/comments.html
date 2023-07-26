@@ -1,0 +1,12 @@
+<div class="form">
+    <form method="post" action="{% url 'comment' pk=hotel.pk %}">
+        {{ comment_form }}
+        {% csrf_token %}
+        <div>
+            <button type="submit">Коментирай</button>
+        </div>
+
+
+    </form>
+
+</div>

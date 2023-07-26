@@ -1,0 +1,21 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+    <div class="form">
+        <h2>Вход</h2>
+            <form class="register-form" method="post" action="{% url 'sign in' %}">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <div>
+
+                    <button type="submit">Вход</button>
+                    <p>Все още нямате профил<a href="{% url 'sign on' %}">Регистрация</a></p>
+{#                    <input type="hidden" value="{{ next }}" name="next"/>#}
+
+
+                </div>
+
+
+            </form>
+    </div>
+
+{% endblock %}

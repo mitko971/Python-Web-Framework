@@ -1,0 +1,26 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+
+    <h2>Резервации:</h2>
+    <div id="hotel-collection">
+        {% for reserve in reservation %}
+            {% if hotel.created_by_user != request.user %}
+                <section class="hotel">
+
+                    <img src="{{ reserve.attached_hotel.hotel_picture.url }}" alt=""/>
+                    <h3 class="title">Име на Хотела: {{ reserve.attached_hotel.hotel_name }}</h3>
+                    <h3 class="title">Локация: {{ reserve.attached_hotel.location }}</h3>
+                    <h3 class="title">Дни: {{ reserve.days }}</h3>
+                    <h3 class="title">Обща цена: {{ reserve.total_price }}</h3>
+                    <p class="description">Описание: {{ hotel.description|slice:20 }}...</p>
+                    <a class="details-btn" href="{% url 'change reservation' pk=reserve.pk %}">Промени резервацията</a>
+
+
+                    <a class="details-btn" href="{% url 'delete reservation' pk=reserve.pk %}">Изтриите резервацията</a>
+
+
+                </section>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base-template.html' %}
+{% block page_content %}
+
+    <div class="form">
+        <h2>Свържете се с нас</h2>
+        <p>Ако имате въпроси или нужда от допълнителна информация, моля, попълнете формата по-долу и ние ще се свържем с
+            вас възможно най-скоро.</p>
+
+        <form class="register-form" method="post" action="{% url 'contact page' %}">
+            {{ form }}
+            {% csrf_token %}
+            <button type="submit">Изпрати</button>
+
+        </form>
+    </div>
+{% endblock %}

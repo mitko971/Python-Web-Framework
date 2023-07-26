@@ -1,0 +1,16 @@
+<nav>
+    <ul class="nav-bar-one">
+        <li><a href="{% url 'home page' %}">Начало</a></li>
+        <li><a href="{% url 'contact page' %}">Контакти</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'show all hotels' %}">Обекти за настаняване</a></li>
+            <li><a href="{% url 'my hotel' %}">Моите обекти</a></li>
+            <li><a href="{% url 'upload hotel' %}">Качи обект</a></li>
+            <li><a href="{% url 'profile details' pk=request.user.pk %}">Профил</a></li>
+            {#            <li><a href="#">Отзиви</a></li>#}
+            <li><a href="{% url 'sign out' %}">Изход</a></li>
+        {% else %}
+            <li><a href="{% url 'about use' %}">За нас</a></li>
+        {% endif %}
+    </ul>
+</nav>

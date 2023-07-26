@@ -1,0 +1,60 @@
+{% extends 'base-template.html' %}
+{% load static %}
+{% block page_content %}
+
+{#    <section id="car-details">#}
+{#        <h1>Детайли на профила : {{ profile }}</h1>#}
+{#        <div class="info-section">#}
+{#            <div class="info-section-profile">#}
+{#                {% if not profile.profile_picture %}#}
+{#                    <img class="car-img" src="{% static 'images/default-profile.jpg' %}" alt='profile-image'/>#}
+{#                {% else %}#}
+{#                    <img class="car-img" src="{{ profile.profile_picture.url }}" alt='profile-image'/>#}
+{#                {% endif %}#}
+{##}
+{##}
+{#                <h1>{{ profile.get_full_name }}</h1>#}
+{#                <p class="description">Имейл: {{ profile.email }}</p>#}
+{#                <p class="description">Брой на резервациите: {{ hotels }}</p>#}
+{##}
+{#                <p class="description">Резервации:<a href="#"> Моите резервации</a></p>#}
+{##}
+{#                <div class="buttons">#}
+{#                    <a href="{% url 'profile edit' pk=request.user.pk %}" class="submit">Редактиране на профила</a>#}
+{#                    <a href="{% url 'profile delete' pk=request.user.pk %}" class="submit">Изтриване на профила</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+
+    <section id="hotel-details">
+        <h1>Детайли на профила : {{ profile }}</h1>
+        <div class="info-section-profile">
+            <div class="hotel-header">
+                {% if not profile.profile_picture %}
+                    <img class="hotel-img" src="{% static 'images/default-profile.jpg' %}" alt='profile-image'/>
+                {% else %}
+                    <img class="hotel-img" src="{{ profile.profile_picture.url }}" alt='profile-image'/>
+                {% endif %}
+
+                <h1>Име: {{ profile.get_full_name }}</h1>
+
+                <p><span class="type">Имейл: {{ profile.email }}</span></p>
+
+                <p><span class="type">Брой на резервациите: {{ hotels }}</span></p>
+                <p><span class="type">Обща стойност на резрвациите: {{ price }}</span></p>
+            </div>
+            <p class="text">
+                {{ hotel.description }}
+            </p>
+
+            <p class="description">Резервации:<a href="{% url 'user reservation' pk=request.user.pk %}">Преглед на резервациите</a></p>
+
+                <div class="buttons">
+                    <a href="{% url 'profile edit' pk=request.user.pk %}" class="button">Редактиране на профила</a>
+                    <a href="{% url 'profile delete' pk=request.user.pk %}" class="button">Изтриване на профила</a>
+                </div>
+        </div>
+    </section>
+
+{% endblock %}
