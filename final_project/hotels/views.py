@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, get_object_or_404
 
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -98,3 +99,28 @@ class DeleteHotel(LoginRequiredMixin, DeleteView):
     model = Hotels
     template_name = 'hotels/delete-hotel.html'
     success_url = reverse_lazy('home page')
+
+
+def comment_view(request, pk):
+    hotels_pk = Hotels.objects.get(pk=pk)
+    user = request.user
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.hotel = hotels_pk
+            comment.user = user
+            comment.save()
+
+        return redirect(request.META['HTTP_REFERER'] + f"#{hotels_pk}")
+
+
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comments, pk=pk)
+    hotel_pk = comment.hotel.pk
+    if request.method == 'GET':
+        comment.delete()
+
+    return redirect(request.META.get('HTTP_REFERER', f"/hotels/{hotel_pk}/"))
+
+

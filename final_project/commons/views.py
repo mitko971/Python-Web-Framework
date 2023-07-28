@@ -1,10 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages import success
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DeleteView
 
 from final_project.commons.forms import ContactForm, CommentForm
+from final_project.commons.models import Comments
 from final_project.hotels.models import Hotels
 
 
@@ -29,15 +31,3 @@ class ContactPage(CreateView):
 
 
 
-def comment_view(request, pk):
-    hotels_pk = Hotels.objects.get(pk=pk)
-    user = request.user
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.hotel = hotels_pk
-            comment.user = user
-            comment.save()
-
-        return redirect(request.META['HTTP_REFERER'] + f"#{hotels_pk}")

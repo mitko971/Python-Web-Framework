@@ -28,6 +28,10 @@ class AdminUser(admin.ModelAdmin):
 
     filter_horizontal = ('groups', 'user_permissions')
 
+    def save_model(self, request, obj, form, change):
+        obj.set_password(form.data['password'])
+
+        obj.save()
 
 
 

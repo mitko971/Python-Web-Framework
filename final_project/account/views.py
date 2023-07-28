@@ -43,9 +43,16 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         context['hotels'] = len(ReservationModel.objects.filter(attached_user_id=self.request.user))
+
         reservation = ReservationModel.objects.filter(attached_user=self.request.user)
         context['price'] = sum(reservation.total_price for reservation in reservation)
+
+        create_hotels = Hotels.objects.filter(created_by_user=self.request.user)
+        context['numb_of_hotels'] = len(create_hotels)
+        context['numb_of_reserve'] = len([x.reserve_by for x in create_hotels if x.reserve_by])
+
         return context
 
 

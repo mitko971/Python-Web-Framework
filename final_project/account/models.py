@@ -91,7 +91,6 @@ class CustomRegisterUser(AbstractBaseUser, auth_models.PermissionsMixin):
         return reverse('profile details', args=[str(self.pk)])
 
 
-
 UserModel = get_user_model()
 
 

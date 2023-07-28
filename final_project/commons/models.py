@@ -8,6 +8,8 @@ from final_project.hotels.models import Hotels
 # Create your models here.
 
 ModelUser = get_user_model()
+
+
 class Contact(models.Model):
     first_name = models.CharField(
         max_length=30,

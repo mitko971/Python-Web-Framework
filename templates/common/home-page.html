@@ -3,27 +3,31 @@
     <!-- Home page -->
     <!-- Съдържание на началната страница -->
     <div class="header">
-        <h2>Stay HUB</h2>
-        <p>Добре дошли в StayHUB, вашата крайна дестинация за безпроблемни резервации и изключителни хотелски
-            изживявания. В StayHub разбираме важността на намирането на перфектното настаняване, което отговаря на
-            вашите специфични нужди и предпочитания.</p>
-        <div class="search-bar">
-            <form action="#" method="GET">
+    <h2>Stay HUB</h2>
+    <p>Добре дошли в StayHUB, вашата крайна дестинация за безпроблемни резервации и изключителни хотелски
+        изживявания. В StayHub разбираме важността на намирането на перфектното настаняване, което отговаря на
+        вашите специфични нужди и предпочитания.</p>
 
-                <label>
-                    <input type="text" name="query" placeholder="Търсете хотел">
-                </label>
-
-                <button type="submit">Търси</button>
-            </form>
-        </div>
-        <div class="nav-bar-two">
-            {% if not request.user.is_authenticated %}
-                <a href="{% url 'sign in' %}" class="button">Вход</a>
-                <a href="{% url 'show all hotels' %}" class="button">Хотели</a>
-                <a href="{% url 'sign on' %}" class="button">Регистрация</a>
-            {% endif %}
-        </div>
+    <div class="nav-bar-two">
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'sign in' %}" class="button">Вход</a>
+            <a href="{% url 'show all hotels' %}" class="button">Хотели</a>
+            <a href="{% url 'sign on' %}" class="button">Регистрация</a>
+        {% else %}
+            <h4>Защо да изберете StayHUB?</h4>
+            <ul>
+                <li>Голямо разнообразие от хотели,</li>
+                <li>Лесно и бързо търсене на настаняване,</li>
+                <li>Отзиви и оценки от други гости,</li>
+                <li>Ексклузивни промоции и специални оферти,</li>
+                <li>24/7 клиентска поддръжка</li>
+            </ul>
+            <p>StayHUB ви предоставя богат избор от хотели. Независимо дали търсите романтична почивка на
+                плажа,
+                разкошен градски хотел или спокойно затънтени в планините, ние имаме всичко, от което се нуждаете.
+                Открийте
+                уникални места за настаняване и създайте незабравимо пътешествие с StayHUB.</p>
+        {% endif %}
     </div>
 {% endblock %}
 

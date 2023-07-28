@@ -21,10 +21,14 @@
                 <h1>Коментари: </h1>
                 {% for comment in comments %}
                     <div>{{ comment.user }} - {{ comment.description }}</div>
+                    {% if comment.user == request.user %}
+                        <p class="description"><a href="{% url 'delete comment' pk=comment.pk %}">Изтрии коментар</a></p>
+                    {% endif %}
                 {% endfor %}
             </div>
             {% if request.user.is_authenticated %}
                 {% include 'common/comments.html' %}
+
             {% endif %}
 
             <div class="buttons">
