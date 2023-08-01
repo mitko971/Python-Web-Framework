@@ -32,7 +32,7 @@
             {% endif %}
 
             <div class="buttons">
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and request.user != hotel.created_by_user%}
                         <a class="button" href="{% url 'reservation' pk=hotel.pk %}">Направи резервация</a>
                     {% endif %}
                 <a href="{% url 'show all hotels' %}" class="button">Хотели</a>
