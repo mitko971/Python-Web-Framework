@@ -1,9 +1,8 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth import views as auth_views, login, get_user_model
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views import generic as views
 from django.views.generic import DetailView, UpdateView, DeleteView, ListView
 from final_project.account.forms import CustomRegisterForm, CustomLoginView, EditUserForm

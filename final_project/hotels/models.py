@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 
 from final_project.account.models import Profile
+from final_project.hotels.validators import hotel_name_validators, location_name_validators
 
 # Create your models here.
 User = get_user_model()
@@ -15,18 +16,24 @@ class Hotels(models.Model):
         null=False,
         blank=False,
         unique=True,
+        validators=(
+            hotel_name_validators,
+        )
     )
     location = models.CharField(
         max_length=30,
         null=False,
         blank=False,
+        validators=(
+            location_name_validators,
+        )
     )
 
     description = models.TextField(
         null=False,
         blank=False,
     )
-    price = models.IntegerField(
+    price = models.FloatField(
         null=False,
         blank=False,
     )
