@@ -15,7 +15,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 @admin.register(Comments)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('hotel', 'user', 'description')
+    list_display = ('hotel', 'user', 'description', 'hotel')
     list_filter = ('hotel',)
     search_fields = ('user',)
     ordering = ('user', )

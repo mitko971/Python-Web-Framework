@@ -63,6 +63,13 @@ class Hotels(models.Model):
         null=True,
     )
 
+    class Meta:
+        verbose_name = 'Хотели'
+        verbose_name_plural = 'Хотели'
+
+    def __str__(self):
+        return self.hotel_name
+
 
 class ReservationModel(models.Model):
     CHOICES = (
@@ -100,6 +107,10 @@ class ReservationModel(models.Model):
         null=True,
         blank=True,
     )
+
+    class Meta:
+        verbose_name = 'Резервации'
+        verbose_name_plural = 'Резервации'
 
     def __str__(self):
         return f"{self.choices} {self.attached_user}"

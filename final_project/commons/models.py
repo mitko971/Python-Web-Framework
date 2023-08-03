@@ -30,6 +30,10 @@ class Contact(models.Model):
         null=False,
     )
 
+    class Meta:
+        verbose_name = 'Контакти'
+        verbose_name_plural = 'Контакти'
+
 
 class Comments(models.Model):
     description = models.TextField(
@@ -45,3 +49,7 @@ class Comments(models.Model):
         Hotels,
         on_delete=models.CASCADE,
     )
+
+    class Meta:
+        verbose_name = 'Коментари'
+        verbose_name_plural = 'Коментари'

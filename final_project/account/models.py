@@ -81,8 +81,8 @@ class CustomRegisterUser(AbstractBaseUser, auth_models.PermissionsMixin):
     )
 
     class Meta:
-        verbose_name = "Users"
-        verbose_name_plural = "Users"
+        verbose_name = 'Потребители'
+        verbose_name_plural = "Потребители"
 
     def get_full_name(self):
         return self.first_name + " " + self.last_name
