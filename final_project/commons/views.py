@@ -1,12 +1,8 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages import success
-from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DeleteView
+from django.views.generic import CreateView, ListView
 
-from final_project.commons.forms import ContactForm, CommentForm
-from final_project.commons.models import Comments
+from final_project.commons.forms import ContactForm
 from final_project.hotels.models import Hotels
 
 

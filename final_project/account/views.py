@@ -55,7 +55,7 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
         return context
 
 
-class UserReservation(ListView):
+class UserReservation(LoginRequiredMixin, ListView):
     template_name = 'account/user_reservation.html'
     model = ReservationModel
 
