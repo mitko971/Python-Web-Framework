@@ -25,7 +25,7 @@ class InformationView(ListView):
         context = super().get_context_data(**kwargs)
         hotel_pk = self.kwargs.get('pk')
 
-        context['hotel'] = Hotels.objects.get(pk=hotel_pk)
+        context['hotel'] = get_object_or_404(Hotels, pk=hotel_pk)
         context['comment_form'] = CommentForm()
         context['comments'] = Comments.objects.filter(hotel=hotel_pk)
 

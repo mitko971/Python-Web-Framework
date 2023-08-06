@@ -1,6 +1,5 @@
 {% extends 'base-template.html' %}
 {% block page_content %}
-
     <section id="hotel-details">
         <h1>Резервирай: {{ reservationmodel.attached_hotel.hotel_name }}</h1>
         <div class="info-section">
@@ -20,7 +19,8 @@
             <p class="text">
                 {{ reservationmodel.attached_hotel.description }}
             </p>
-            <form class="register-form" method="post" action="{% url 'change reservation' pk=reservationmodel.pk %}">
+            <form class="register-form" method="post"
+                  action="{% url 'change reservation' pk=reservationmodel.pk %}">
                 {{ form.as_p }}
                 {% csrf_token %}
                 <h1>Текуща цена нарезервацията: {{ reservationmodel.total_price|floatformat:2 }}</h1>
