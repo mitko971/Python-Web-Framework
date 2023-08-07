@@ -13,8 +13,8 @@ ModelUser = get_user_model()
 class Contact(models.Model):
     first_name = models.CharField(
         max_length=30,
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
         validators=(
             MinLengthValidator(2, ),
             validate_only_alphabetic,

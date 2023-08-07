@@ -2,7 +2,7 @@
 {% block page_content %}
     <div class="form">
         <h2>Редактирай профил:</h2>
-        <form class="edit-form" method="post">
+        <form class="edit-form" method="post" enctype="multipart/form-data">>
             {{ form.as_p }}
             {% csrf_token %}
             <div>
