@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -20,7 +20,6 @@ class InformationView(ListView):
     template_name = 'hotels/hotel-information.html'
     model = Hotels
 
-    # трябва да хвана грешката ако няма хотели  в query сета
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         hotel_pk = self.kwargs.get('pk')
@@ -121,3 +120,24 @@ def delete_comment(request, pk):
         comment.delete()
 
     return redirect(request.META.get('HTTP_REFERER', f"/hotels/{hotel_pk}/"))
+
+
+def search_view(request):
+    stars = request.GET.get('stars')
+    location = request.GET.get('location')
+
+    hotels = Hotels.objects.all()
+
+    if stars and location:
+        hotels = hotels.filter(stars=int(stars), location=location)
+
+    elif location:
+        hotels = hotels.filter(location=location)
+
+    elif stars:
+        hotels = hotels.filter(stars=int(stars))
+
+    context = {
+        'hotels_list': hotels,
+    }
+    return render(request, 'hotels/all-hotels.html', context)

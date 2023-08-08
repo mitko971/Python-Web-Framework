@@ -2,7 +2,7 @@
 {% block page_content %}
     {% if hotels_list %}
         <h2>Хотели:</h2>
-
+        {% include 'hotels/search-form.html' %}
         <div id="hotel-collection">
             {% for hotel in hotels_list %}
                 {% if hotel.created_by_user != request.user %}

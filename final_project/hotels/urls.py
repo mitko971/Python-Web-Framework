@@ -3,9 +3,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from final_project.hotels.views import UploadHotel, ViewUserHotels, EditHotel, DeleteHotel, ReservationView, \
-    InformationView, comment_view, delete_comment
+    InformationView, comment_view, delete_comment, search_view
 
 urlpatterns = [
+    path('search/', search_view, name='search'),
     path('upload/', UploadHotel.as_view(), name='upload hotel'),
     path('myhotels/', ViewUserHotels.as_view(), name='my hotel'),
     path('<int:pk>/', include([
