@@ -63,7 +63,10 @@ class CustomRegisterUser(AbstractBaseUser, auth_models.PermissionsMixin):
         validators=(
             MinLengthValidator(2, ),
             validate_only_alphabetic,
-        )
+        ),
+        # for create supper user
+        default='Dimitur',
+
     )
     last_name = models.CharField(
         max_length=30,
@@ -72,7 +75,9 @@ class CustomRegisterUser(AbstractBaseUser, auth_models.PermissionsMixin):
         validators=(
             MinLengthValidator(2, ),
             validate_only_alphabetic,
-        )
+        ),
+        # for create supper user
+        default='Stoyanov'
     )
     profile_picture = models.ImageField(
         null=True,
