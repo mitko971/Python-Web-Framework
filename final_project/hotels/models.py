@@ -4,7 +4,7 @@ from django.db import models
 from django.urls import reverse
 
 from final_project.account.models import Profile
-from final_project.hotels.validators import hotel_name_validators, location_name_validators
+from final_project.hotels.validators import hotel_name_validators, location_name_validators, valid_days
 
 # Create your models here.
 User = get_user_model()
@@ -81,6 +81,9 @@ class ReservationModel(models.Model):
     days = models.PositiveIntegerField(
         null=False,
         blank=False,
+        validators=(
+            valid_days,
+        )
     )
 
     choices = models.CharField(
