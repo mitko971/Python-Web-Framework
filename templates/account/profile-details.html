@@ -13,6 +13,9 @@
                 {% endif %}
 
                 <h1>Име: {{ profile.get_full_name }}</h1>
+                {% if request.user.is_staff %}
+                    <h1>Админ</h1>
+                {% endif %}
 
                 <p><span class="type">Имейл: {{ profile.email }}</span></p>
 

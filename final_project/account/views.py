@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth import views as auth_views, login, get_user_model
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -41,18 +42,21 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
     context_object_name = 'profile'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        if self.request.user.pk == self.kwargs['pk']:
+            context = super().get_context_data(**kwargs)
 
-        context['hotels'] = len(ReservationModel.objects.filter(attached_user_id=self.request.user))
+            context['hotels'] = len(ReservationModel.objects.filter(attached_user_id=self.request.user))
 
-        reservation = ReservationModel.objects.filter(attached_user=self.request.user)
-        context['price'] = sum(reservation.total_price for reservation in reservation)
+            reservation = ReservationModel.objects.filter(attached_user=self.request.user)
+            context['price'] = sum(reservation.total_price for reservation in reservation)
 
-        create_hotels = Hotels.objects.filter(created_by_user=self.request.user)
-        context['numb_of_hotels'] = len(create_hotels)
-        context['numb_of_reserve'] = len([x.reserve_by for x in create_hotels if x.reserve_by])
+            create_hotels = Hotels.objects.filter(created_by_user=self.request.user)
+            context['numb_of_hotels'] = len(create_hotels)
+            context['numb_of_reserve'] = len([x.reserve_by for x in create_hotels if x.reserve_by])
 
-        return context
+            return context
+        else:
+            raise Http404
 
 
 class UserReservation(LoginRequiredMixin, ListView):
@@ -105,6 +109,11 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     form_class = EditUserForm
     template_name = 'account/edit-profile.html'
 
+    def get_context_data(self, **kwargs):
+        if self.request.user.pk != self.kwargs['pk']:
+            raise Http404
+        return super().get_context_data(**kwargs)
+
     def get_object(self, queryset=None):
         return self.request.user
 
@@ -117,11 +126,21 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'account/delete-profile.html'
     success_url = reverse_lazy('home page')
 
+    def get_context_data(self, **kwargs):
+        if self.request.user.pk != self.kwargs['pk']:
+            raise Http404
+        return super().get_context_data(**kwargs)
+
     def form_valid(self, form):
         user = self.request.user
         comments = Comments.objects.filter(user=user)
         comments.delete()
-        reservations = ReservationModel.objects.filter(attached_user=user)
-        reservations.delete()
+        hotels = Hotels.objects.filter(created_by_user=user)
+        own_reservation = ReservationModel.objects.filter(attached_user=user)
+        own_reservation.delete()
+
+        for h in hotels:
+            reservations = ReservationModel.objects.filter(attached_hotel=h.pk)
+            reservations.delete()
 
         return super().form_valid(form)

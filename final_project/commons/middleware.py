@@ -1,5 +1,5 @@
-from django.shortcuts import redirect, resolve_url
-from django.urls import reverse, reverse_lazy
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 
 
 class AuthenticationAdminMiddleware:

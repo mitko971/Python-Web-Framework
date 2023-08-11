@@ -9,7 +9,7 @@ from final_project.commons.models import Comments
 from final_project.hotels.forms import HotelForm, ReservationForm, EditHotelForm
 from final_project.hotels.models import Hotels, ReservationModel
 from django.db import transaction
-from django.core import exceptions as auth_exc
+from django.http import Http404
 
 # Create your views here.
 
@@ -92,11 +92,33 @@ class EditHotel(LoginRequiredMixin, UpdateView):
     template_name = 'hotels/edit-hotel.html'
     success_url = reverse_lazy('my hotel')
 
+    def get_context_data(self, **kwargs):
+        hotel_id = self.kwargs['pk']
+        hotel = Hotels.objects.filter(pk=hotel_id).first()
+        if hotel.created_by_user != self.request.user:
+            raise Http404
+
+        return super().get_context_data(**kwargs)
+
 
 class DeleteHotel(LoginRequiredMixin, DeleteView):
     model = Hotels
     template_name = 'hotels/delete-hotel.html'
     success_url = reverse_lazy('home page')
+
+    def get_context_data(self, **kwargs):
+        hotel_id = self.kwargs['pk']
+        hotel = Hotels.objects.filter(pk=hotel_id).first()
+        if hotel.created_by_user != self.request.user:
+            raise Http404
+
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        hotel = self.kwargs['pk']
+        reservations = ReservationModel.objects.filter(attached_hotel=hotel)
+        reservations.delete()
+        return super().form_valid(form)
 
 
 def comment_view(request, pk):

@@ -8,7 +8,7 @@ from final_project.hotels.models import Hotels, ReservationModel
 @admin.register(Hotels)
 class HotelAdmin(admin.ModelAdmin):
     list_display = ('hotel_name', 'location', 'price', 'stars', 'created_by_user')
-    list_filter = ('location', 'stars')
+    list_filter = ('location', 'stars', 'price', 'hotel_name',)
     search_fields = ('hotel_name', 'location')
     ordering = ('-stars',)
 
@@ -22,8 +22,8 @@ class HotelAdmin(admin.ModelAdmin):
 
 @admin.register(ReservationModel)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ('days', 'choices', 'total_price', 'attached_user', 'attached_hotel')
-    list_filter = ('days', 'total_price', )
+    list_display = ('days', 'choices', 'total_price', 'attached_user', 'attached_hotel', )
+    list_filter = ('days', 'total_price', 'choices',)
     search_fields = ('choices', 'days')
     ordering = ('-days',)
 

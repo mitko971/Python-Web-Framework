@@ -61,6 +61,7 @@ class Hotels(models.Model):
         User,
         on_delete=models.SET_NULL,
         null=True,
+        blank=True,
     )
 
     class Meta:
